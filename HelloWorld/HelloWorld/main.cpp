@@ -2,12 +2,11 @@
 #include <avr/io.h>
 #include <util/delay.h>
 
-#define PAUSE _delay_ms(2000)
+#define PAUSE _delay_ms(50)
 
 int main(void)
 {
 	DDRC = 0xFF;
-	PORTC = 0xFF;
 
 	while (1)
 	{
