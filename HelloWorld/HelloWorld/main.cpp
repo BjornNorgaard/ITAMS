@@ -2,7 +2,7 @@
 #include <avr/io.h>
 #include <util/delay.h>
 
-#define PAUSE _delay_ms(500)
+#define PAUSE _delay_ms(2000)
 
 int main(void)
 {
