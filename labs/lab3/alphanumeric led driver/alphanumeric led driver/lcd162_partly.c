@@ -109,8 +109,25 @@ static void sendInstruction( unsigned char data )
 
 static void sendData( unsigned char data )
 {
-	// To be implemented
-	
+	// Wait for display controller ready
+	waitBusy();
+	// Write high nibble ::
+	// RW = 0, RS = 1, E = 0, DB7-DB4 = Data high nibble
+	PORT_lcd = (data & 0b11110000);
+	PORT_lcd |= 0b00000001;
+	// Set pin E high (tAS > 40 ns gained via calling E_High() )
+	E_High();
+	// Set pin E low (PWEH > 230 ns is gained)
+	E_Low();
+
+	// Write low nibble ::
+	// RW = 0, RS = 1, E = 0, DB7-DB4 = Data low nibble
+	PORT_lcd = (data & 0b00001111) << 4;
+	PORT_lcd |= 0b00000001;
+	// Set pin E high (tAS > 40 ns is gained via calling E_High() )
+	E_High();
+	// Set pin E low (PWEH > 230 ns is gained)
+	E_Low();
 }
 
 //*********************** PUBLIC operations *****************************
