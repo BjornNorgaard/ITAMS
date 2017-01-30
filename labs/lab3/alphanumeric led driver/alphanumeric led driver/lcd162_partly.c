@@ -185,26 +185,65 @@ void LCDInit()
 // the upper line, leftmost character
 void LCDClear()
 {
+	waitBusy();
+	
+	// clear lcd
+	// turn display on, cursor on, and blining on.
+	//sendInstruction(0b00001111);
+	
+	// move cursor to home
+	// DBx = 0, DB1 = 1, DB0 = -
+	sendInstruction(0b00000010);
 }
 
 // Sets DDRAM address to character position x and line number y
 void LCDGotoXY( unsigned char x, unsigned char y )
 {
+	waitBusy();
+	
+	// move cursor to home
+	// DBx = 0, DB1 = 1, DB0 = -
+	sendInstruction(0b00000010);
+	
+	// move position
+	unsigned char i = 0;
+	for ( i = 0; i < x; i++)
+	{
+		sendInstruction(0b00010100);
+	}
+	
+	// move line
+	for (i = 0; i < y; i++)
+	{
+		sendInstruction(0b00011000);
+	}
 }
 
 // Display "ch" at "current display position"
 void LCDDispChar( char ch )
 {
+	waitBusy();
+	sendData(ch);
 }
 
 // Displays the string "str" starting at "current display position"
 void LCDDispString( char *str )
 {
+	waitBusy();
+	
+	while(*str != NULL)
+	{
+		sendData(*str);
+		sendInstruction(0b00010100);
+		str++;
+	}
 }
 
 // Displays the value of integer "i" at "current display position"
 void LCDDispInteger( int i )
 {
+	waitBusy();
+	sendData(i);
 }
 
 // Loads one of the 8 user definable characters (UDC) with a dot-pattern,
@@ -224,22 +263,28 @@ void LCDOnOffControl( unsigned char cursor, unsigned char blink )
 // Moves the cursor to the left
 void LCDCursorLeft()
 {
+	waitBusy();
+	sendInstruction(0b00000101);
 }
 
 // Moves the cursor to the right
 void LCDCursorRight()
 {
+	waitBusy();
+	sendInstruction(0b00000100);
 }
 
 // Moves the display text one position to the left
 void LCDShiftLeft()
 {
+	waitBusy();
+	sendInstruction(0b00000100);
 }
 
 // Moves the display text one position to the right
 void LCDShiftRight()
 {
-
+	waitBusy();
 }
 
 //----------------------------------------------------------------------

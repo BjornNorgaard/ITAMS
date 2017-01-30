@@ -19,6 +19,8 @@ Henning Hargaard, January 25, 2017
 #include <util/delay.h>
 #include "lcd162.h"
 
+static void sendData( unsigned char data );
+
 // User defined characters : Æ Ø Å æ ø å (special danish characters)
 const unsigned char capital_ae[8]= {
 	0b0001111,
