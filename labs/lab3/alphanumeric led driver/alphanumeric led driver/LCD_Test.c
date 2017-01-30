@@ -16,7 +16,7 @@
  *****************************************/
 #include <avr/io.h>
 #define F_CPU 3686400
-#include <avr/delay.h>
+#include <util/delay.h>
 #include "lcd162.h"
 
 // User defined characters : Æ Ø Å æ ø å (special danish characters)
