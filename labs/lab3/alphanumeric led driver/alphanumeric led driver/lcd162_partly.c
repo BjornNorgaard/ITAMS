@@ -268,7 +268,7 @@ void LCDCursorLeft()
 // Moves the cursor to the right
 void LCDCursorRight()
 {
-	sendInstruction(0b00000100);
+	sendInstruction(0b00010100);
 }
 
 // Moves the display text one position to the left
