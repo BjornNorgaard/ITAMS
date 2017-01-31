@@ -186,14 +186,7 @@ void LCDInit()
 void LCDClear()
 {
 	waitBusy();
-	
-	// clear lcd
-	// turn display on, cursor on, and blining on.
-	//sendInstruction(0b00001111);
-	
-	// move cursor to home
-	// DBx = 0, DB1 = 1, DB0 = -
-	sendInstruction(0b00000010);
+	sendInstruction(0b00000001);
 }
 
 // Sets DDRAM address to character position x and line number y
