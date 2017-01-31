@@ -250,7 +250,13 @@ void LCDLoadUDC( unsigned char UDCNo, const unsigned char *UDCTab )
 // "blink" not 0 => the character at the cursor position blinks.
 void LCDOnOffControl( unsigned char cursor, unsigned char blink )
 {
+	// Display control: display: On
+	unsigned char command = 0b00001100;
 
+	if (cursor) command |= 0b00000010;
+	if (blink) command |= 0b00000001;
+
+	sendInstruction(command);
 }
 
 // Moves the cursor to the left
