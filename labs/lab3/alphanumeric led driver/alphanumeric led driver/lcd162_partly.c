@@ -185,31 +185,14 @@ void LCDInit()
 // the upper line, leftmost character
 void LCDClear()
 {
-	waitBusy();
 	sendInstruction(0b00000001);
 }
 
 // Sets DDRAM address to character position x and line number y
 void LCDGotoXY( unsigned char x, unsigned char y )
 {
-	waitBusy();
-	
-	// move cursor to home
-	// DBx = 0, DB1 = 1, DB0 = -
-	sendInstruction(0b00000010);
-	
-	// move position
-	unsigned char i = 0;
-	for ( i = 0; i < x; i++)
-	{
-		sendInstruction(0b00010100);
-	}
-	
-	// move line
-	for (i = 0; i < y; i++)
-	{
-		sendInstruction(0b00011000);
-	}
+	if ( (x < NUMBER_OF_CHARS) && (y < NUMBER_OF_LINES) )
+	sendInstruction( 0b10000000 | ((y*LINE2_START_ADR)+x) );
 }
 
 // Display "ch" at "current display position"
