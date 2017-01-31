@@ -35,6 +35,11 @@ Henning Hargaard, January 25, 2017
 #define E    2
 #define BUSY 7
 
+// Display = 2 lines x 16 characters
+#define NUMBER_OF_LINES 2
+#define NUMBER_OF_CHARS 16
+#define LINE2_START_ADR 0x40
+
 //*********************** PRIVATE (static) operations *********************
 static void E_High()
 {
@@ -198,15 +203,12 @@ void LCDGotoXY( unsigned char x, unsigned char y )
 // Display "ch" at "current display position"
 void LCDDispChar( char ch )
 {
-	waitBusy();
 	sendData(ch);
 }
 
 // Displays the string "str" starting at "current display position"
 void LCDDispString( char *str )
 {
-	waitBusy();
-	
 	while(*str != NULL)
 	{
 		sendData(*str);
@@ -218,7 +220,6 @@ void LCDDispString( char *str )
 // Displays the value of integer "i" at "current display position"
 void LCDDispInteger( int i )
 {
-	waitBusy();
 	sendData(i);
 }
 
@@ -226,6 +227,7 @@ void LCDDispInteger( int i )
 // pre-defined in an 8 byte const array
 void LCDLoadUDC( unsigned char UDCNo, const unsigned char *UDCTab )
 {
+
 }
 
 // Selects, if the cursor has to be visible, and if the character at
@@ -234,33 +236,31 @@ void LCDLoadUDC( unsigned char UDCNo, const unsigned char *UDCTab )
 // "blink" not 0 => the character at the cursor position blinks.
 void LCDOnOffControl( unsigned char cursor, unsigned char blink )
 {
+
 }
 
 // Moves the cursor to the left
 void LCDCursorLeft()
 {
-	waitBusy();
 	sendInstruction(0b00000101);
 }
 
 // Moves the cursor to the right
 void LCDCursorRight()
 {
-	waitBusy();
 	sendInstruction(0b00000100);
 }
 
 // Moves the display text one position to the left
 void LCDShiftLeft()
 {
-	waitBusy();
 	sendInstruction(0b00000100);
 }
 
 // Moves the display text one position to the right
 void LCDShiftRight()
 {
-	waitBusy();
+
 }
 
 //----------------------------------------------------------------------
