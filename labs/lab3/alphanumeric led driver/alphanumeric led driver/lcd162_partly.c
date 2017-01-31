@@ -262,7 +262,7 @@ void LCDOnOffControl( unsigned char cursor, unsigned char blink )
 // Moves the cursor to the left
 void LCDCursorLeft()
 {
-	sendInstruction(0b00000101);
+	sendInstruction(0b00010000);
 }
 
 // Moves the cursor to the right
