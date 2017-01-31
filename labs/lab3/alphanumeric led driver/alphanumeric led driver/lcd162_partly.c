@@ -221,7 +221,9 @@ void LCDDispString( char *str )
 // Displays the value of integer "i" at "current display position"
 void LCDDispInteger( int i )
 {
-	sendData(i);
+	char number[7];
+	itoa(i, number, 10);
+	LCDDispString(number);
 }
 
 // Loads one of the 8 user definable characters (UDC) with a dot-pattern,
