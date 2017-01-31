@@ -280,7 +280,7 @@ void LCDShiftLeft()
 // Moves the display text one position to the right
 void LCDShiftRight()
 {
-
+	sendInstruction(0b00011100);
 }
 
 //----------------------------------------------------------------------
