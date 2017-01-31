@@ -196,10 +196,10 @@ void LCDClear()
 // Sets DDRAM address to character position x and line number y
 void LCDGotoXY( unsigned char x, unsigned char y )
 {
-	if ( (x < NUMBER_OF_CHARS) && (y < NUMBER_OF_LINES) )
-	{
-		sendInstruction( 0b10000000 | ((y*LINE2_START_ADR)+x) );
-	}
+	if (x >= NUMBER_OF_CHARS)	return;
+	if (y > NUMBER_OF_LINES)	return;
+	
+	sendInstruction( 0b10000000 | ((y*LINE2_START_ADR)+x) );
 }
 
 // Display "ch" at "current display position"
