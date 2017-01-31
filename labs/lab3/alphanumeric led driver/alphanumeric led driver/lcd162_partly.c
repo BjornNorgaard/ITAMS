@@ -197,7 +197,9 @@ void LCDClear()
 void LCDGotoXY( unsigned char x, unsigned char y )
 {
 	if ( (x < NUMBER_OF_CHARS) && (y < NUMBER_OF_LINES) )
-	sendInstruction( 0b10000000 | ((y*LINE2_START_ADR)+x) );
+	{
+		sendInstruction( 0b10000000 | ((y*LINE2_START_ADR)+x) );
+	}
 }
 
 // Display "ch" at "current display position"
