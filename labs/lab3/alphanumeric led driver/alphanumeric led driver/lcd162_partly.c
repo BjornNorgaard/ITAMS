@@ -197,7 +197,7 @@ void LCDClear()
 void LCDGotoXY( unsigned char x, unsigned char y )
 {
 	if (x >= NUMBER_OF_CHARS)	return;
-	if (y > NUMBER_OF_LINES)	return;
+	if (y >= NUMBER_OF_LINES)	return;
 	
 	sendInstruction( 0b10000000 | ((y*LINE2_START_ADR)+x) );
 }
