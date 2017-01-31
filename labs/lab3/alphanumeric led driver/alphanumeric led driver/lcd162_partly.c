@@ -211,10 +211,9 @@ void LCDDispChar( char ch )
 // Displays the string "str" starting at "current display position"
 void LCDDispString( char *str )
 {
-	while(*str != NULL)
+	while(*str != '\0')
 	{
 		sendData(*str);
-		sendInstruction(0b00010100);
 		str++;
 	}
 }
