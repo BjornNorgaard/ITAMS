@@ -230,7 +230,18 @@ void LCDDispInteger( int i )
 // pre-defined in an 8 byte const array
 void LCDLoadUDC( unsigned char UDCNo, const unsigned char *UDCTab )
 {
+	unsigned char i;
 
+	// Set CGRAM adresse (for the characters first bit row)
+	sendInstruction( 0b01000000 | (UDCNo<<3) );
+	// Send the 8 bit rows (auto-incrementing the CGRAM address)
+	for ( i=0; i<8; i++ )
+	{
+		sendData( *UDCTab++ );
+	}
+
+	// Tells the display not to expect more CGRAM data (dummy instruction)
+	LCDGotoXY(0,0);
 }
 
 // Selects, if the cursor has to be visible, and if the character at
