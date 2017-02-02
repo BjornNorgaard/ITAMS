@@ -81,9 +81,9 @@ void ClearHalfScreen(unsigned char Chip)
 // Initializes (resets) the display
 void DisplayInit()
 { 
-	// Port A and D as output
-	DATA_DDR = 0xFF;
+	// Port A as output
 	CONTROL_DDR = 0xFF;
+	CONTROL_PORT |= 
 	E_Low();
 }
 
@@ -127,7 +127,8 @@ void Draw_Horizontal_Line(unsigned char StartX, unsigned char StartY, unsigned c
 //*********************** PRIVATE (static) operations *********************
 static void sendInstruction(unsigned char data)
 {
-
+	CONTROL_PORT = 0x00;
+	CONTROL_PORT |= 
 }
 
 static void sendData(unsigned char data)
