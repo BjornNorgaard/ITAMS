@@ -80,12 +80,17 @@ void ClearHalfScreen(unsigned char Chip)
 
 // Initializes (resets) the display
 void DisplayInit()
-{
+{ 
+	// Port A and D as output
+	DATA_DDR = 0xFF;
+	CONTROL_DDR = 0xFF;
+	E_Low();
 }
 
 // Turns the display (both left and right side) ON
 void DisplayOn()
 {
+
 }
 
 // Turns the display (both left and right side) OFF
@@ -117,4 +122,45 @@ void SetPixel(unsigned char x, unsigned char y)
 // "Length" is the line length in pixels
 void Draw_Horizontal_Line(unsigned char StartX, unsigned char StartY, unsigned char Length)
 {
+}
+
+//*********************** PRIVATE (static) operations *********************
+static void sendInstruction(unsigned char data)
+{
+
+}
+
+static void sendData(unsigned char data)
+{
+
+}
+
+static void E_High()
+{
+	// Set the E pin high
+	CONTROL_PORT |= 1<<E;
+	// Min 230 ns E-pulse-width : PWEH
+	_NOP();
+	_NOP();
+	_NOP();
+	_NOP();
+	_NOP();
+	_NOP();
+	_NOP();
+	_NOP();
+}
+
+static void E_Low()
+{
+	// Set the E pin low
+		CONTROL_PORT &= ~(1<<E);
+	// Enable cycle time : Min 500 ns
+	_NOP();
+	_NOP();
+	_NOP();
+	_NOP();
+	_NOP();
+	_NOP();
+	_NOP();
+	_NOP();
 }
