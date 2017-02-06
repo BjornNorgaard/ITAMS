@@ -106,29 +106,9 @@ BOOTLOADER_SECTION int main()
 		{
 			if( address >= (APP_END>>1) ) // Protect boot loader area.
 			{
-				SendChar('?');
+				SendChar('?');	
 			}
 			else
-			{
-				boot_spm_busy_wait();
-				boot_page_write(address << 1); // Convert word-address to byte-address and write.
-			}
-			SendChar('\r'); // Send OK back.
-		}
-
-		// Enter and leave programming mode.
-		else if( (val=='P') || (val=='L') )
-		{
-			SendChar('\r'); // Nothing special to do, just answer OK.
-		}
-
-		// Exit boot loader.
-		else if(val=='E')
-		{
-			boot_spm_busy_wait();
-			boot_rww_enable();
-			SendChar('\r');
-			// Generate watchdog RESET (starting the application)
 			WDTCR = 0b00001000;
 			while(1)
 			{}
