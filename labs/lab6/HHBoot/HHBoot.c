@@ -131,7 +131,7 @@ BOOTLOADER_SECTION int main()
 			// Generate watchdog RESET (starting the application)
 			WDTCR = 0b00001000;
 			while(1)
-		{}
+			{}
 		}
 
 		// Get programmer type.
