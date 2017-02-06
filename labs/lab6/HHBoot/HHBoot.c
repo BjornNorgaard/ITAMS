@@ -45,6 +45,11 @@ BOOTLOADER_SECTION int main()
 	// Initialize UART: 115200 bit/s, 8 data bits, no parity
 	InitUART();
 
+	//while(1)
+	//{
+		//SendChar(ReadChar());
+	//}
+
 	while (1)
 	{
 		val = ReadChar();
