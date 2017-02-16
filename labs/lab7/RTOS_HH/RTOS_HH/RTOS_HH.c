@@ -3,7 +3,7 @@ FreeRTOS demo program.
 Implementing 2 tasks, each blinking a LED.
 
 STK500 setup:
-  * PORTC connected to LEDS.
+* PORTC connected to LEDS.
 
 Henning Hargaard 13.2.2016
 *******************************************************/
@@ -14,33 +14,33 @@ Henning Hargaard 13.2.2016
 
 void vLEDFlashTask1( void *pvParameters )
 {
-portTickType xLastWakeTime;
-xLastWakeTime=xTaskGetTickCount();
-  while(1)
-  {
-    toggleLED(0);
-    vTaskDelayUntil(&xLastWakeTime,1000);
-  }
+	portTickType xLastWakeTime;
+	xLastWakeTime=xTaskGetTickCount();
+	while(1)
+	{
+		toggleLED(0);
+		vTaskDelayUntil(&xLastWakeTime,1000);
+	}
 }
 
 void vLEDFlashTask2( void *pvParameters )
 {
-portTickType xLastWakeTime;
-xLastWakeTime=xTaskGetTickCount();
-  while(1)
-  {
-    toggleLED(1);
-    vTaskDelayUntil(&xLastWakeTime,500);
-  }
+	portTickType xLastWakeTime;
+	xLastWakeTime=xTaskGetTickCount();
+	while(1)
+	{
+		toggleLED(1);
+		vTaskDelayUntil(&xLastWakeTime,500);
+	}
 }
 
 int main(void)
 {
-  initLEDport();
-  xTaskCreate( vLEDFlashTask1, ( signed char * ) "LED1", configMINIMAL_STACK_SIZE, NULL, tskIDLE_PRIORITY, NULL );
-  xTaskCreate( vLEDFlashTask2, ( signed char * ) "LED2", configMINIMAL_STACK_SIZE, NULL, tskIDLE_PRIORITY, NULL );	
-  vTaskStartScheduler();
-  while(1)
-  {}
+	initLEDport();
+	xTaskCreate( vLEDFlashTask1, ( signed char * ) "LED1", configMINIMAL_STACK_SIZE, NULL, tskIDLE_PRIORITY, NULL );
+	xTaskCreate( vLEDFlashTask2, ( signed char * ) "LED2", configMINIMAL_STACK_SIZE, NULL, tskIDLE_PRIORITY, NULL );
+	vTaskStartScheduler();
+	while(1)
+	{}
 }
 
