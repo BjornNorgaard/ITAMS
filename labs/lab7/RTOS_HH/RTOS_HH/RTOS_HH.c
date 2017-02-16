@@ -34,11 +34,23 @@ void vLEDFlashTask2( void *pvParameters )
 	}
 }
 
+void vLEDFlashTask3( void *pvParameters )
+{
+	portTickType xLastWakeTime;
+	xLastWakeTime=xTaskGetTickCount();
+	while(1)
+	{
+		toggleLED(2);
+		vTaskDelayUntil(&xLastWakeTime,250);
+	}
+}
+
 int main(void)
 {
 	initLEDport();
 	xTaskCreate( vLEDFlashTask1, ( signed char * ) "LED1", configMINIMAL_STACK_SIZE, NULL, tskIDLE_PRIORITY, NULL );
 	xTaskCreate( vLEDFlashTask2, ( signed char * ) "LED2", configMINIMAL_STACK_SIZE, NULL, tskIDLE_PRIORITY, NULL );
+	xTaskCreate( vLEDFlashTask3, ( signed char * ) "LED3", configMINIMAL_STACK_SIZE, NULL, tskIDLE_PRIORITY, NULL );
 	vTaskStartScheduler();
 	while(1)
 	{}
