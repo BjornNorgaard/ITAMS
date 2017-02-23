@@ -151,7 +151,10 @@
     </ToolchainSettings>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="ISquare.h">
+    <Compile Include="gsm.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="gsm.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="led.c">
@@ -160,7 +163,7 @@
     <Compile Include="led.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="main.cpp">
+    <Compile Include="main.c">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="switch.c">
