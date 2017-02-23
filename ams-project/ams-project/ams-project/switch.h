@@ -1,11 +1,14 @@
 ﻿
-void initSwitchPort(unsigned char hvilkenPort); /*
-hvilkenPort: 0=A, 1=B ...
+void initSwitchPort(unsigned char port); /*
+port: 0=A, 1=B ...
 */
-unsigned char switchStatus(unsigned char hvilkenPort); /*
-hvilkenPort: 0=A, 1=B ...
-tjekker om knappen er trykket ned
+
+unsigned char switchStatus(unsigned char port); /*
+port: 0=A, 1=B ...
+returns status of switches on the choosen port.
 */
-unsigned char switchOn(unsigned char hvilkenPort, unsigned char switch_nr);/*
-hvilkenPort: 0=A, 1=B ...
+
+unsigned char switchOn(unsigned char port, unsigned char switchNumber);/*
+port: 0=A, 1=B ...
+turns the switch on.
 */

@@ -1,21 +1,24 @@
-﻿void initLEDport(unsigned char hvilkenPort); /* 
-0 = PORTA
-1 = PORTB
-2 = PORTC
-3 = PORTD 
+﻿
+void initLEDport(unsigned char port); /* 
+0 = PORTA, 1 = PORTB, 2 = PORTC, 3 = PORTD
 */
-void writeAllLEDs(unsigned char hvilkenPort, unsigned char pattern);/*
-hvilkenPort: 0=A, 1=B ...
-patteren: giver sig selv
+
+void writeAllLEDs(unsigned char port, unsigned char pattern);/*
+port: 0=A, 1=B...
+pattern: the pattern for show.
 */
-void turnOnLED(unsigned char hvilkenPort, unsigned char led_nr);/*
-hvilkenPort: 0=A, 1=B ...
-led_nr: tænder den valgte led
+
+void turnOnLED(unsigned char port, unsigned char led);/*
+port: 0=A, 1=B...
+led: the LED to turn on.
 */
-void turnOffLED(unsigned char hvilkenPort, unsigned char led_nr);/*
-hvilkenPort: 0=A, 1=B ...
-led_nr: slukker den valgte led
+
+void turnOffLED(unsigned char port, unsigned char led);/*
+port: 0=A, 1=B ...
+led: the LED to turn off.
 */
-void toggleLED(unsigned char hvilkenPort, unsigned char led_nr);/*
-hvilkenPort: 0=A, 1=B ...
+
+void toggleLED(unsigned char port, unsigned char led);/*
+port: 0=A, 1=B...
+led: the LED to toggle.
 */
