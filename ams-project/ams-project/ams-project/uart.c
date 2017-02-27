@@ -28,11 +28,11 @@ Parameters:
 	BaudRate: Wanted Baud Rate.
 	Databits: Wanted number of Data Bits.
 *************************************************************************/
-void InitUART(unsigned long BaudRate, unsigned char DataBit)
+void initUart(unsigned long baudRate, unsigned char dataBit)
 {
 unsigned int TempUBRR;
 
-  if ((BaudRate >= 110) && (BaudRate <= 115200) && (DataBit >=5) && (DataBit <= 8))
+  if ((baudRate >= 110) && (baudRate <= 115200) && (dataBit >=5) && (dataBit <= 8))
   { 
     // "Normal" clock, no multiprocesser mode (= default)
     UCSRA = 0b00100000;
@@ -44,11 +44,11 @@ unsigned int TempUBRR;
     // Asynchronous operation, 1 stop bit, no parity
     // Bit7 always has to be 1
     // Bit 2 and bit 1 controlles the number of databits
-    UCSRC = 0b10000000 | (DataBit-5)<<1;
+    UCSRC = 0b10000000 | (dataBit-5)<<1;
     // Set Baud Rate according to the parameter BaudRate:
     // Select Baud Rate (first store "UBRRH--UBRRL" in local 16-bit variable,
     //                   then write the two 8-bit registers seperately):
-    TempUBRR = XTAL/(16*BaudRate) - 1;
+    TempUBRR = XTAL/(16*baudRate) - 1;
     // Write upper part of UBRR
     UBRRH = TempUBRR >> 8;
     // Write lower part of UBRR
@@ -61,7 +61,7 @@ unsigned int TempUBRR;
   Returns 0 (FALSE), if the UART has NOT received a new character.
   Returns value <> 0 (TRUE), if the UART HAS received a new character.
 *************************************************************************/
-unsigned char CharReady()
+unsigned char charReady()
 {
    return UCSRA & (1<<7);
 }
@@ -70,7 +70,7 @@ unsigned char CharReady()
 Awaits new character received.
 Then this character is returned.
 *************************************************************************/
-char ReadChar()
+char readChar()
 {
   // Wait for new character received
   while ( (UCSRA & (1<<7)) == 0 )
@@ -85,7 +85,7 @@ Then it send the character.
 Parameter :
 	Tegn : Character for sending. 
 *************************************************************************/
-void SendChar(char Tegn)
+void sendChar(char Tegn)
 {
   // Wait for transmitter register empty (ready for new character)
   while ( (UCSRA & (1<<5)) == 0 )
@@ -99,13 +99,13 @@ Sends 0-terminated string.
 Parameter:
    Streng: Pointer to the string. 
 *************************************************************************/
-void SendString(char* Streng)
+void sendString(char* Streng)
 {
   // Repeat untill zero-termination
   while (*Streng != 0)
   {
     // Send the character pointed to by "Streng"
-    SendChar(*Streng);
+    sendChar(*Streng);
     // Advance the pointer one step
     Streng++;
   }
@@ -118,13 +118,13 @@ Makes use of the C standard library <stdlib.h>.
 Parameter:
       Tal: The integer to be converted and send. 
 *************************************************************************/
-void SendInteger(int Tal)
+void sendInteger(int Tal)
 {
 char array[7];
   // Convert the integer til an ASCII string (array), radix = 10 
   itoa(Tal, array, 10);
   // - then send the string
-  SendString(array);
+  sendString(array);
 }
 
 /**************************************************/

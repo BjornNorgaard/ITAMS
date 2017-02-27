@@ -2,7 +2,7 @@
 #include "led.h"
 #define MAX_led 7
 
-void initLEDport(unsigned char port){
+void initLedPort(unsigned char port){
 	if (port == 0){
 		DDRA = 0xFF;	// 1 for OUTPUT
 		PORTC = 0xFF;	// LEDs slukket
@@ -21,7 +21,7 @@ void initLEDport(unsigned char port){
 	}
 }
 
-void writeAllLEDs(unsigned char port, unsigned char pattern){
+void writeAllLeds(unsigned char port, unsigned char pattern){
 	if(port == 0){
 		PORTA = ~pattern;
 	}
@@ -36,7 +36,7 @@ void writeAllLEDs(unsigned char port, unsigned char pattern){
 	}
 }
 
-void turnOnLED(unsigned char port, unsigned char led){
+void turnOnLed(unsigned char port, unsigned char led){
 	unsigned char mask;
 	
 	if(port == 0){
@@ -69,7 +69,7 @@ void turnOnLED(unsigned char port, unsigned char led){
 	}
 }
 
-void turnOffLED(unsigned char port, unsigned char led){
+void turnOffLed(unsigned char port, unsigned char led){
 	unsigned char mask;
 	
 	if(port == 0){
@@ -102,7 +102,7 @@ void turnOffLED(unsigned char port, unsigned char led){
 	}
 }
 
-void toggleLED(unsigned char port, unsigned char led){
+void toggleLed(unsigned char port, unsigned char led){
 	unsigned char mask;
 	
 	if(port == 0){

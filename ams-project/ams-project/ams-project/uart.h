@@ -3,10 +3,10 @@
 * Header file for Mega32 UART driver. *
 * Henning Hargaard, 1/11 2011         *
 ***************************************/
-void InitUART(unsigned long BaudRate, unsigned char DataBit);
-unsigned char CharReady();
-char ReadChar();
-void SendChar(char Tegn);
-void SendString(char* Streng);
-void SendInteger(int Tal);
+void initUart(unsigned long baudRate, unsigned char dataBit);
+unsigned char charReady();
+char readChar();
+void sendChar(char charToSend);
+void sendString(char* stringToSend);
+void sendInteger(int number);
 /**************************************/

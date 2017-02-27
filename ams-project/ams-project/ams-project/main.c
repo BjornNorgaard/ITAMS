@@ -7,11 +7,13 @@
 #include "gsm.h"
 
 #define led_port 2
+#define switch_port 1
 
 int main(void)
 {
-	initLEDport(led_port);
-	InitUART(9600, 8);
+	initLedPort(led_port);
+	initSwitchPort(switch_port);
+	initUart(9600, 8);
 	
 	char message[50] = "Helloworld!";
 	char phonenumber[20] = "+4524464105";
@@ -23,7 +25,7 @@ int main(void)
 	{
 		for (int i = 0; i < 8; i ++)
 		{
-			toggleLED(led_port, i);
+			toggleLed(led_port, i);
 			_delay_ms(100);
 		}
 		_delay_ms(500);
