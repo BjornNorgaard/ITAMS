@@ -20,7 +20,6 @@ int main(void)
 
 	sendMessage(phonenumber, message);
 
-	/* Replace with your application code */
 	while (1)
 	{
 		for (int i = 0; i < 8; i ++)
