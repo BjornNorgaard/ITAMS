@@ -9,8 +9,7 @@
 #define led_port 2
 #define switch_port 1
 
-int main(void)
-{
+int main(void) {
 	initLedPort(led_port);
 	initSwitchPort(switch_port);
 	initUart(9600, 8);
@@ -20,10 +19,8 @@ int main(void)
 
 	sendMessage(phonenumber, message);
 
-	while (1)
-	{
-		for (int i = 0; i < 8; i ++)
-		{
+	while (1) {
+		for (int i = 0; i < 8; i ++) {
 			toggleLed(led_port, i);
 			_delay_ms(100);
 		}
