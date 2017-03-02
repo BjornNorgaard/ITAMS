@@ -14,7 +14,17 @@
 
 // Constants
 #define XTAL 3686400
-#define delay 10
+#define delay 100
+
+/*************************************************************************
+When using this uart driver with 
+the gsm module a delay of at least 100ms 
+is needed between	each character.
+*************************************************************************/
+void delay() 
+{
+	_delay_ms(delay);
+}
 
 /*************************************************************************
 USART initilization.
