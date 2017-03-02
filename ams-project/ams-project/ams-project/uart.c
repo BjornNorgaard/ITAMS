@@ -103,6 +103,8 @@ void sendChar(char Tegn)
 	{}
 	// Then send the character
 	UDR = Tegn;
+
+	delay();
 }
 
 /*************************************************************************
