@@ -8,6 +8,10 @@ void setTextMode() {
 	sendString("\r\n");
 }
 
+void disableEcho() {
+	sendString("ATE0");
+}
+
 void sendMessage(char* phonenumber, char* message) {
 	setTextMode();
 
