@@ -3,10 +3,11 @@
 
 // main functions
 void gsmInit();
+void gsmSendSms(char* phonenumber, char* message);
 
 // util functions
 void gsmWaitForResponse();
-void gsmSetEcho(unsigned char echo);
+void gsmSetEcho(char echo);
 void gsmSetTextMode();
 void gsmConfigSms();
 
