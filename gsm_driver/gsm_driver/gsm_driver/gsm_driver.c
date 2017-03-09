@@ -9,7 +9,7 @@ const char CTRL_Z = 26;
 
 void gsmInit()
 {
-	gsmSetEcho(1);
+	gsmSetEcho(0);
 	gsmSetTextMode();
 	gsmConfigSms();
 }
@@ -31,18 +31,41 @@ void gsmSendSms(char* phonenumber, char* message)
 
 void gsmWaitForResponse()
 {
-	while(1)
+	char * errorMsg = "ERROR";
+	int pointer = 0;
+	char received = 0;
+	char previous = 0;
+	
+	while ((received = uartReadChar()) != 0)
 	{
-		if (uartReadChar() == 'K')
+		if (previous == 'O' && received == 'K')
 		{
+			uartReadChar();
+			uartReadChar();
 			break;
 		}
-		else if (uartReadChar() == 'E')
+		else
 		{
+			previous = received;
+		}
+		
+		if (received == errorMsg[pointer])
+		{
+			pointer++;
+		}
+		else
+		{
+			pointer = 0;
+		}
+		
+		if (pointer >= 5)
+		{
+			uartReadChar();
+			uartReadChar();
 			break;
 		}
 	}
-
+	
 	_delay_ms(200);
 }
 
@@ -57,8 +80,7 @@ void gsmSetEcho(char echo)
 
 void gsmSetTextMode()
 {
-	uartSendString("AT+CMGF=1");
-	uartSendString("\r");
+	uartSendString("AT+CMGF=1\r");
 
 	gsmWaitForResponse();
 }
