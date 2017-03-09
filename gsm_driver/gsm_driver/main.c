@@ -3,7 +3,10 @@
 
 int main(void)
 {
-    while (1) 
-    {
-    }
+	gsmInit();
+
+	while (1)
+	{
+		gsmSendSms("24464105", "Please get this");
+	}
 }
